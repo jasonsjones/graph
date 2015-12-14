@@ -31,5 +31,8 @@
     "gulp-util": "^3.0.4",
     "jshint-stylish": "^1.0.1",
     "mocha": "^2.2.4"
+  },
+  "dependencies": {
+    "simple-data-cache": "^0.1.0"
   }
 }
