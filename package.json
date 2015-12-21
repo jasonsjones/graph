@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "queue-fifo": "^0.2.1",
-    "simple-data-cache": "^0.1.0"
+    "simple-data-cache": "^0.1.0",
+    "stack-lifo": "^0.1.2"
   }
 }
