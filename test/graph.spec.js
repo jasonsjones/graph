@@ -35,6 +35,7 @@ function getComplexGraph() {
     g.addEdge('C', 'D');
     g.addEdge('C', 'H');
     g.addEdge('D', 'H');
+    g.addEdge('E', 'F');
     g.addEdge('F', 'G');
 
     return g;
@@ -79,6 +80,11 @@ describe('Graph data structure', function () {
     it('does a breadth first search', function () {
         var graph = getComplexGraph();
         expect(graph.BFS('A')).to.be.eql(['A', 'B', 'E', 'C', 'F', 'D', 'H', 'G']);
+    });
+
+    it('does a depth first search', function() {
+        var graph = getComplexGraph();
+        expect(graph.DFS('A')).to.be.eql(['A', 'E', 'F', 'G', 'B', 'C', 'H', 'D']);
     });
 
 });

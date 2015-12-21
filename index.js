@@ -3,6 +3,7 @@
 
     var Dictionary = require('simple-data-cache');
     var Queue = require('queue-fifo');
+    var Stack = require('stack-lifo');
 
     function Graph(theVerts) {
         this.adjacentList = new Dictionary();
@@ -59,6 +60,40 @@
                 if (visited.indexOf(neighbors[i]) === -1) {
                     visited.push(neighbors[i]);
                     q.enqueue(neighbors[i]);
+                }
+            }
+        }
+
+        return result;
+    };
+
+    Graph.prototype.DFS = function(vertex) {
+        var stack = new Stack();
+        var result = [];
+        var visited = [];
+
+        // mark the starting vertex as visited and push it on the stack
+        visited.push(vertex);
+        stack.push(vertex);
+
+        while (!stack.isEmpty()) {
+
+            // pop a vertex from the top of the stack
+            var focusVertex = stack.pop();
+
+            // add it to the results list
+            result.push(focusVertex);
+
+            //get all of its connected vertices
+            var neighbors = this.adjacentList.get(focusVertex);
+
+            for (var i = 0; i < neighbors.length; i++) {
+
+                // if neighbor[i] has not been visited, mark it as visited
+                // and push it on the stack
+                if (visited.indexOf(neighbors[i]) === -1) {
+                    visited.push(neighbors[i]);
+                    stack.push(neighbors[i]);
                 }
             }
         }
