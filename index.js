@@ -20,7 +20,7 @@
      * vertices will need to be added by using a call the 'addVertex' method.
      *
      * @constructor
-     * @param {Array} theVerts an array of labels to initialize as the vertices
+     * @param {array} theVerts an array of labels to initialize as the vertices
      *                of the graph
      *
      */
@@ -40,11 +40,17 @@
 
     }
 
+    /**
+     *
+     */
     Graph.prototype.addVertex = function (label) {
         this.vertices.push(label);
         this.adjacentList.set(label, []);
     };
 
+    /**
+     *
+     */
     Graph.prototype.addEdge = function (v1, v2) {
         if (this.adjacentList.has(v1) && this.adjacentList.has(v2)) {
             this.adjacentList.get(v1).push(v2);
@@ -52,6 +58,10 @@
         }
     };
 
+    /**
+     * Breadth first search
+     *
+     */
     Graph.prototype.BFS = function(vertex) {
         var q = new Queue();
         var result = [];
@@ -86,6 +96,10 @@
         return result;
     };
 
+    /**
+     * Depth first search
+     *
+     */
     Graph.prototype.DFS = function(vertex) {
         var stack = new Stack();
         var result = [];
@@ -120,6 +134,13 @@
         return result;
     };
 
+    /**
+     * Returns the string representation of the graph.  It will return the
+     * list of vertices with their adjacency list, which is a list describing
+     * the connected vertices to that particular vertex.
+     *
+     * @returns {string} the string representation of the graph
+     */
     Graph.prototype.toString = function () {
         var str = '';
         for (var i = 0; i < this.vertices.length; i++) {
@@ -133,6 +154,7 @@
         return str;
     };
 
+    // expose the graph
     module.exports = Graph;
 
     if (module.parent === null) {
