@@ -1,10 +1,29 @@
+/**
+ * @fileOverview Implementation of a graph data structure
+ * @author Jason S. Jones
+ * @version 0.1.3
+ * @license MIT
+ */
 (function() {
     'use strict';
 
+    // pull in a few other data structurs to help build the graph
+    // and to implement the two search algorithms: BFS and DFS.
     var Dictionary = require('simple-data-cache');
     var Queue = require('queue-fifo');
     var Stack = require('stack-lifo');
 
+    /**
+     * Creates a new Graph instance using the first parameter to provide the
+     * labels for the intitial vertices of the graph.  If no parameter is
+     * provided to this function, an empty graph will be instantiated and all
+     * vertices will need to be added by using a call the 'addVertex' method.
+     *
+     * @constructor
+     * @param {Array} theVerts an array of labels to initialize as the vertices
+     *                of the graph
+     *
+     */
     function Graph(theVerts) {
         this.adjacentList = new Dictionary();
 
