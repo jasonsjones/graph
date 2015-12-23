@@ -51,10 +51,11 @@
     /**
      *
      */
-    Graph.prototype.addEdge = function (v1, v2) {
+    Graph.prototype.addEdge = function (v1, v2, w) {
         if (this.adjacentList.has(v1) && this.adjacentList.has(v2)) {
-            this.adjacentList.get(v1).push(v2);
-            this.adjacentList.get(v2).push(v1);
+            var edgeWeight = w || 1;
+            this.adjacentList.get(v1).push({label: v2, weight: edgeWeight});
+            this.adjacentList.get(v2).push({label: v1, weight: edgeWeight});
         }
     };
 
@@ -86,9 +87,9 @@
 
                 // if neighbor[i] has not been visited, mark it as visited
                 // and add it to the queue
-                if (visited.indexOf(neighbors[i]) === -1) {
-                    visited.push(neighbors[i]);
-                    q.enqueue(neighbors[i]);
+                if (visited.indexOf(neighbors[i].label) === -1) {
+                    visited.push(neighbors[i].label);
+                    q.enqueue(neighbors[i].label);
                 }
             }
         }
@@ -124,9 +125,9 @@
 
                 // if neighbor[i] has not been visited, mark it as visited
                 // and push it on the stack
-                if (visited.indexOf(neighbors[i]) === -1) {
-                    visited.push(neighbors[i]);
-                    stack.push(neighbors[i]);
+                if (visited.indexOf(neighbors[i].label) === -1) {
+                    visited.push(neighbors[i].label);
+                    stack.push(neighbors[i].label);
                 }
             }
         }
@@ -147,7 +148,7 @@
             str  += this.vertices[i] + ':';
             var connectedVerts = this.adjacentList.get(this.vertices[i]);
             for (var j = 0; j < connectedVerts.length; j++) {
-                str += ' ' + connectedVerts[j];
+                str += ' ' + connectedVerts[j].label;
             }
             str += '\n';
         }

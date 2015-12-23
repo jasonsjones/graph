@@ -72,9 +72,15 @@ describe('Graph data structure', function () {
     it('adds an edge between vertices', function () {
         var graph = getSimpleGraph();
 
-        expect(graph.adjacentList.get('A').indexOf('B') > -1).to.be.true;
-        expect(graph.adjacentList.get('A').indexOf('C') > -1).to.be.true;
-        expect(graph.adjacentList.get('B').indexOf('A') > -1).to.be.true;
+        expect(graph.adjacentList.get('A')).to.be.an.Array;
+        expect(graph.adjacentList.get('A')[0]).to.include({label: 'B', weight: 1});
+        expect(graph.adjacentList.get('A')[1]).to.include({label: 'C', weight: 1});
+
+        expect(graph.adjacentList.get('B')).to.be.an.Array;
+        expect(graph.adjacentList.get('B')[0]).to.include({label: 'A', weight: 1});
+
+        expect(graph.adjacentList.get('D')).to.be.an.Array;
+        expect(graph.adjacentList.get('D')[0]).to.include({label: 'C', weight: 1});
     });
 
     it('does a breadth first search', function () {
