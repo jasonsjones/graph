@@ -64,6 +64,11 @@ describe('Graph data structure', function () {
         expect(graph.adjacentList).to.exist;
     });
 
+    it('has toString method to provide a string representation of the graph', function () {
+        var graph = getSimpleGraph();
+        expect(graph.toString()).to.be.a('string');
+    });
+
     it('adds a vertex to the graph', function () {
         var graph = getSimpleGraph();
         expect(graph.vertices).to.have.length(4);
@@ -81,6 +86,13 @@ describe('Graph data structure', function () {
 
         expect(graph.adjacentList.get('D')).to.be.an.Array;
         expect(graph.adjacentList.get('D')[0]).to.include({label: 'C', weight: 1});
+    });
+
+    it('throws an error if adding edge to a vertex that does not exist', function () {
+        var graph = getSimpleGraph();
+        expect(function () {
+            graph.addEdge('Z', 'A');
+        }).to.throw('Vertex does not exist: Cannot add edge.');
     });
 
     it('does a breadth first search', function () {
