@@ -56,6 +56,8 @@
             var edgeWeight = w || 1;
             this.adjacentList.get(v1).push({label: v2, weight: edgeWeight});
             this.adjacentList.get(v2).push({label: v1, weight: edgeWeight});
+        } else {
+            throw new Error('Vertex does not exist: Cannot add edge.');
         }
     };
 
@@ -158,15 +160,4 @@
     // expose the graph
     module.exports = Graph;
 
-    if (module.parent === null) {
-        main();
-    }
-
-    function main() {
-        var graph = new Graph(['A', 'B', 'C', 'D']);
-        graph.addEdge('A', 'B');
-        graph.addEdge('A', 'C');
-        graph.addEdge('C', 'D');
-        console.log(graph.toString());
-    }
 }());
