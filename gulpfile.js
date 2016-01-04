@@ -20,7 +20,7 @@ gulp.task('test', ['jshint', 'pre-test'], function () {
         .src(source[1])
         .pipe($.mocha())
         .pipe($.istanbul.writeReports())
-    .pipe($.istanbul.enforceThresholds({thresholds: {global: 80}}));
+        .pipe($.istanbul.enforceThresholds({thresholds: {global: 80}}));
 });
 
 gulp.task('pre-test', function () {
