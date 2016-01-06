@@ -1,7 +1,7 @@
 /**
  * @fileOverview Implementation of a graph data structure
  * @author Jason S. Jones
- * @version 0.1.3
+ * @version 0.1.0
  * @license MIT
  */
 (function() {
@@ -14,25 +14,26 @@
     var Stack = require('stack-lifo');
 
     /**
-     * Creates a new Graph instance using the first parameter to provide the
+     * Creates a new Graph instance using the theVerts to provide the
      * labels for the intitial vertices of the graph.  If no parameter is
-     * provided to this function, an empty graph will be instantiated and all
-     * vertices will need to be added by using a call the 'addVertex' method.
+     * provided, an empty graph will be instantiated and all vertices will
+     * need to be added by calling the 'addVertex' method.
      *
      * @constructor
-     * @param {array} theVerts an array of labels to initialize as the vertices
+     * @param {Array} theVerts an array of labels to initialize as the vertices
      *                of the graph
      *
      */
     function Graph(theVerts) {
+        var self = this;
         this.adjacentList = new Dictionary();
 
         if (theVerts && theVerts.constructor === Array) {
             this.vertices = theVerts;
 
-            for (var i = 0; i < this.vertices.length; i++) {
-                this.adjacentList.set(this.vertices[i], []);
-            }
+            this.vertices.forEach(function (v) {
+                self.adjacentList.set(v, []);
+            });
 
         } else {
             this.vertices = [];
