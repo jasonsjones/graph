@@ -105,4 +105,15 @@ describe('Graph data structure', function () {
         expect(graph.DFS('A')).to.be.eql(['A', 'E', 'F', 'G', 'B', 'C', 'H', 'D']);
     });
 
+    it('calculates the shortest path', function () {
+        var graph = getSimpleGraph();
+        var result = graph.shortestPath('A');
+
+        expect(result.distances).to.be.an.Array;
+        expect(result.distances.D).to.eql(2);
+        expect(result.distances.A).to.eql(0);
+        expect(result.predecessors.D).to.eql('C');
+        expect(result.predecessors.B).to.eql('A');
+    });
+
 });

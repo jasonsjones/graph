@@ -38,7 +38,6 @@
         } else {
             this.vertices = [];
         }
-
     }
 
     /**
@@ -136,6 +135,52 @@
         }
 
         return result;
+    };
+
+    /**
+     *
+     */
+    Graph.prototype.shortestPath = function (label) {
+        var q = new Queue();
+        var visited = [];
+        var dist = [];
+        var pred = [];
+
+        this.vertices.forEach(function (v) {
+            dist[v] = 0;
+            pred[v] = null;
+        });
+
+        // mark the starting vertex as visited and add it the queue
+        visited.push(label);
+        q.enqueue(label);
+
+        while (!q.isEmpty()) {
+
+            // dequeue the front vertex label from the queue
+            var focusVertex = q.dequeue();
+
+            //get all of its connected vertices
+            var neighbors = this.adjacentList.get(focusVertex);
+
+            for (var i = 0; i < neighbors.length; i++) {
+                var w = neighbors[i].label;
+
+                // if w (neighbor[i]) has not been visited, mark it as visited, update the
+                // the distance, record the predecessor vertex, and add it to the queue
+                if (visited.indexOf(w) === -1) {
+                    visited.push(w);
+                    dist[w] = dist[focusVertex] + 1;
+                    pred[w] = focusVertex;
+                    q.enqueue(w);
+                }
+            }
+        }
+
+        return {
+            distances: dist,
+            predecessors: pred
+        };
     };
 
     /**
