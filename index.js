@@ -87,11 +87,13 @@
 
             for (var i = 0; i < neighbors.length; i++) {
 
-                // if neighbor[i] has not been visited, mark it as visited
+                var w = neighbors[i].label;
+
+                // if w (neighbor[i]) has not been visited, mark it as visited
                 // and add it to the queue
-                if (visited.indexOf(neighbors[i].label) === -1) {
-                    visited.push(neighbors[i].label);
-                    q.enqueue(neighbors[i].label);
+                if (visited.indexOf(w) === -1) {
+                    visited.push(w);
+                    q.enqueue(w);
                 }
             }
         }
@@ -125,11 +127,13 @@
 
             for (var i = 0; i < neighbors.length; i++) {
 
-                // if neighbor[i] has not been visited, mark it as visited
+                var w = neighbors[i].label;
+
+                // if w (neighbor[i]) has not been visited, mark it as visited
                 // and push it on the stack
-                if (visited.indexOf(neighbors[i].label) === -1) {
-                    visited.push(neighbors[i].label);
-                    stack.push(neighbors[i].label);
+                if (visited.indexOf(w) === -1) {
+                    visited.push(w);
+                    stack.push(w);
                 }
             }
         }
