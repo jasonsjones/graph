@@ -4,7 +4,11 @@
   "description": "Javascript implementation of a graph data structure",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "pretest": "npm run lint",
+    "test": "istanbul cover -x *.spec.js _mocha -- --reporter spec test/*.js",
+    "posttest": "npm run check-coverage",
+    "lint": "jscs *.js test/*.js && jshint --reporter=node_modules/jshint-stylish *.js test/*.js",
+    "check-coverage": "istanbul check-coverage --statements 80 --branches 80 --functions 80 --lines 80"
   },
   "repository": {
     "type": "git",
@@ -30,7 +34,10 @@
     "gulp-load-plugins": "^0.10.0",
     "gulp-mocha": "^2.0.1",
     "gulp-util": "^3.0.4",
-    "jshint-stylish": "^1.0.1",
+    "istanbul": "^0.4.2",
+    "jscs": "^2.9.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0",
     "mocha": "^2.2.4"
   },
   "dependencies": {
