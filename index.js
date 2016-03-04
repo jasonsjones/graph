@@ -1,5 +1,5 @@
 /**
- * @fileOverview Implementation of a graph data structure
+ * @fileoverview Implementation of a graph data structure
  * @author Jason S. Jones
  * @version 0.1.0
  * @license MIT
